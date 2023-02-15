@@ -1,21 +1,31 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React, {Component} from 'react';
+import { StyleSheet, TouchableOpacity, Text, View } from 'react-native';
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Hello Prashant!!! Finally Man</Text>
-      <StatusBar style="auto" />
-      <Welcome name="Prashant" />
-    </View>
-  );
+
+class App extends Component{
+  state = {
+    count : 0,
+  };
+
+  onPress = () => {
+    this.setState ({
+      count: this.state.count + 1,
+    });
+  };
+
+  render() {
+    return (
+      <View style={styles.container}>
+        <TouchableOpacity style={styles.button} onPress={this.onPress}>
+          <Text>Click me</Text>
+        </TouchableOpacity>
+        <View>
+          <Text>You clicked {this.state.count} times</Text>
+        </View>
+      </View>
+    );
+  }
 }
-
-const Welcome = (props) => (
-  <View>
-    <text>Hello {props.name}</text>
-  </View>
-)
 
 const styles = StyleSheet.create({
   container: {
@@ -24,4 +34,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+
+  button: {
+    alignItems: 'center',
+    backgroundColor: '#DDDDDDD',
+    padding: 10,
+    marginBottom: 10,
+  },
 });
+
+export default App;
